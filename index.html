@@ -304,7 +304,7 @@ margin: 0;
 <i class="ri-menu-line ri-lg"></i>
 </button>
 <h1 class="text-lg font-semibold">CRM</h1>
-<div id="timer" class="text-sm font-medium cursor-pointer">01:00</div>
+<div id="timer" class="text-sm font-medium">01:00</div>
 </div>
 <div class="flex items-center gap-1">
 <button id="radioBtn" class="w-7 h-7 flex items-center justify-center cursor-pointer">
@@ -1597,10 +1597,6 @@ clearInterval(timerInterval);
 showAuthPopup();
 }
 }, 1000);
-timerElement.addEventListener('click', () => {
-clearInterval(timerInterval);
-showAuthPopup();
-});
 }
 function showAuthPopup() {
 const modal = document.createElement('div');
@@ -1640,6 +1636,14 @@ document.body.removeChild(modal);
 showToast('Aplicación desbloqueada');
 } else {
 showToast('Credenciales incorrectas');
+authUsername.value = '';
+authPassword.value = '';
+authUsername.classList.add('border-red-500');
+authPassword.classList.add('border-red-500');
+setTimeout(() => {
+authUsername.classList.remove('border-red-500');
+authPassword.classList.remove('border-red-500');
+}, 2000);
 }
 });
 }
