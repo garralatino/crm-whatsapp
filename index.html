@@ -451,6 +451,7 @@ margin: 0;
 <div class="flex items-center">
 <i class="ri-contacts-line ri-lg text-primary mr-2"></i>
 <span class="text-gray-500">Seleccionar contacto</span>
+<span id="savedContactsCount" class="ml-2 px-2 py-0.5 bg-primary text-white text-xs !rounded-full">0</span>
 </div>
 <i class="ri-arrow-down-s-line ri-lg"></i>
 </button>
@@ -1535,7 +1536,7 @@ Agendar cita
 <i class="ri-close-line ri-lg"></i>
 </button>
 </div>
-<div class="grid grid-cols-2 gap-3">
+<div class="grid grid-cols-3 gap-3">
 <button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="showSMSModal()">
 <i class="ri-message-2-line text-primary ri-xl mb-1"></i>
 <span class="text-xs">SMS</span>
@@ -1543,6 +1544,34 @@ Agendar cita
 <button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="showCalculator()">
 <i class="ri-calculator-line text-primary ri-xl mb-1"></i>
 <span class="text-xs">Calculadora</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://sites.google.com/view/cierre-de-ventas/inicio', '_blank')">
+<i class="ri-shopping-bag-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Cierre de Ventas</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://sites.google.com/view/generador--de-proformas/inicio', '_blank')">
+<i class="ri-file-list-3-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Proformas</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://sites.google.com/view/video-a-gif/inicio', '_blank')">
+<i class="ri-file-gif-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Convertir a GIF</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://sites.google.com/view/convertir-fotos/inicio', '_blank')">
+<i class="ri-image-edit-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Reducir Imágenes</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://readdy.site/share/e2e56286eeab2b88869e6892f4bc7547', '_blank')">
+<i class="ri-camera-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Fotos 200KB</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://sites.google.com/view/generador-de-flyers/inicio', '_blank')">
+<i class="ri-image-edit-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Flyers</span>
+</button>
+<button class="tool-btn flex flex-col items-center justify-center p-3 bg-gray-50 hover:bg-gray-100 !rounded-button" onclick="window.open('https://sites.google.com/view/generador-de-landingpage/inicio', '_blank')">
+<i class="ri-pages-line text-primary ri-xl mb-1"></i>
+<span class="text-xs">Landing Page</span>
 </button>
 </div>
 </div>
@@ -7540,6 +7569,8 @@ let contactTags = JSON.parse(localStorage.getItem('whatsappContactTags')) || [];
 let scheduledMessages = JSON.parse(localStorage.getItem('whatsappScheduledMessages')) || [];
 function updateSavedPhonesList(searchTerm = '') {
 const phonesList = document.getElementById('savedPhonesList');
+const contactsCount = document.getElementById('savedContactsCount');
+contactsCount.textContent = savedPhones.length;
 if (savedPhones.length === 0) {
 phonesList.innerHTML = '<li class="px-3 py-2 text-gray-500 text-center">No hay números guardados</li>';
 return;
