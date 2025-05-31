@@ -1658,21 +1658,31 @@ startTimer();
 }
 });
 authSubmit.addEventListener('click', () => {
-if (authUsername.value === 'admin' 'luis' && authPassword.value === '741852963') {
-isUnlocked = true;
-localStorage.setItem('isUnlocked', 'true');
-document.body.removeChild(modal);
-showToast('Aplicación desbloqueada');
+const usuariosAutorizados = {
+  'admin': '741852963',
+  'garralatino@gmail.com': '123456',
+  'cliente@ejemplo.com': 'clave2024',
+  'garralatino@gmail.com': '999888777'
+};
+
+const usuario = authUsername.value.trim();
+const clave = authPassword.value.trim();
+
+if (usuariosAutorizados[usuario] === clave) {
+  isUnlocked = true;
+  localStorage.setItem('isUnlocked', 'true');
+  document.body.removeChild(modal);
+  showToast('Aplicación desbloqueada');
 } else {
-showToast('Credenciales incorrectas');
-authUsername.value = '';
-authPassword.value = '';
-authUsername.classList.add('border-red-500');
-authPassword.classList.add('border-red-500');
-setTimeout(() => {
-authUsername.classList.remove('border-red-500');
-authPassword.classList.remove('border-red-500');
-}, 2000);
+  showToast('Credenciales incorrectas');
+  authUsername.value = '';
+  authPassword.value = '';
+  authUsername.classList.add('border-red-500');
+  authPassword.classList.add('border-red-500');
+  setTimeout(() => {
+    authUsername.classList.remove('border-red-500');
+    authPassword.classList.remove('border-red-500');
+  }, 2000);
 }
 });
 }
